@@ -545,31 +545,163 @@ input:checked+.toggle-slider:before {
 }
 
 /* ===================================
-   Responsive Design
+   Mobile Input (Hidden but functional)
+   =================================== */
+.mobile-typing-input {
+    position: absolute;
+    opacity: 0.01;
+    /* Almost invisible but still focusable */
+    pointer-events: auto;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1px;
+    height: 1px;
+    font-size: 16px;
+    /* Prevents iOS zoom on focus */
+    border: none;
+    outline: none;
+    background: transparent;
+    color: transparent;
+    caret-color: transparent;
+}
+
+/* ===================================
+   Responsive Design - Enhanced
    =================================== */
 @media (max-width: 768px) {
     .game-title {
         font-size: var(--font-size-xl);
     }
 
+    .game-subtitle {
+        font-size: var(--font-size-md);
+    }
+
     .stats-card {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-md);
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+    }
+
+    .stat-value {
+        font-size: var(--font-size-lg);
     }
 
     .live-stats {
         justify-content: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .live-stat {
+        min-width: 70px;
+        padding: 0.4rem 0.6rem;
+    }
+
+    .live-stat-label {
+        font-size: 0.65rem;
+    }
+
+    .live-stat-value {
+        font-size: 1rem;
     }
 
     .text-display {
-        font-size: var(--font-size-md);
+        font-size: 1.2rem;
+        padding: 1.5rem 1rem;
+        line-height: 2;
     }
 
+    .typing-container {
+        padding: var(--spacing-md);
+    }
+
+    .typing-header {
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+    }
+
+    /* Settings improvements */
+    .setting-item {
+        padding: 1rem;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+    }
+
+    .setting-item label {
+        font-size: 1rem;
+    }
+
+    .setting-select {
+        min-width: 150px;
+        font-size: 0.9rem;
+    }
+
+    /* Buttons - larger touch targets */
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        min-height: 48px;
+        /* iOS recommended touch target */
+    }
+
+    .btn-small {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        min-height: 44px;
+    }
+
+    .btn-large {
+        padding: 1rem 1.5rem;
+        font-size: 1.2rem;
+    }
+
+    .menu-buttons {
+        gap: 1rem;
+        padding: var(--spacing-md);
+    }
+
+    /* Animal collection */
     .animals-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 0.75rem;
+    }
+
+    .animal-card {
+        padding: 0.75rem;
+    }
+
+    .animal-image {
+        height: 100px;
+    }
+
+    .animal-name {
+        font-size: 0.9rem;
+    }
+
+    .animal-requirement {
+        font-size: 0.7rem;
+    }
+
+    /* Results screen */
+    .results-stats {
         grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
     }
 
     .results-buttons {
         flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .result-value {
+        font-size: var(--font-size-xl);
     }
 }
 
@@ -577,13 +709,94 @@ input:checked+.toggle-slider:before {
     :root {
         --font-size-xxl: 2rem;
         --font-size-xl: 1.75rem;
+        --font-size-lg: 1.25rem;
     }
 
     .container {
         padding: var(--spacing-sm);
     }
 
-    .animals-grid {
+    .text-display {
+        font-size: 1.1rem;
+        padding: 1rem 0.75rem;
+        line-height: 1.8;
+    }
+
+    .stats-card {
         grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .stat-value {
+        font-size: var(--font-size-md);
+    }
+
+    .animals-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .animal-card {
+        padding: 0.5rem;
+    }
+
+    .animal-image {
+        height: 80px;
+    }
+
+    .live-stat {
+        min-width: 60px;
+        padding: 0.3rem 0.5rem;
+    }
+
+    .live-stat-label {
+        font-size: 0.6rem;
+    }
+
+    .live-stat-value {
+        font-size: 0.9rem;
+    }
+
+    .menu-buttons {
+        padding: 0.5rem;
+    }
+
+    .btn {
+        font-size: 0.95rem;
+        padding: 0.75rem 1.25rem;
+    }
+
+    .results-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .result-value {
+        font-size: var(--font-size-lg);
+    }
+}
+
+/* Landscape mode for small devices */
+@media (max-height: 500px) and (orientation: landscape) {
+    .typing-container {
+        padding: 0.5rem;
+    }
+
+    .text-display-container {
+        padding: 1rem;
+        min-height: auto;
+    }
+
+    .text-display {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .live-stats {
+        gap: 0.25rem;
+    }
+
+    .live-stat {
+        padding: 0.25rem 0.5rem;
+        min-width: 50px;
     }
 }

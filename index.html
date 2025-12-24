@@ -12,8 +12,9 @@
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#2ecc71">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Jungle Typing">
+    <meta name="mobile-web-app-capable" content="yes">
     <link rel="apple-touch-icon" href="icons/icon-192x192.png">
 
     <!-- Preconnect to Google Fonts -->
@@ -111,6 +112,10 @@
                 <div class="ghost-overlay" id="ghost-overlay"></div>
                 <div class="text-display" id="text-display"></div>
             </div>
+
+            <!-- Hidden input for mobile keyboard support -->
+            <input type="text" id="mobile-typing-input" class="mobile-typing-input" autocomplete="off" autocorrect="off"
+                autocapitalize="off" spellcheck="false" inputmode="text" aria-label="Type here">
 
             <div class="combo-effect" id="combo-effect"></div>
 

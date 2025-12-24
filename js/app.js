@@ -150,13 +150,69 @@ class JungleTypingApp {
             this.resetProgress();
         });
 
-        // Global keydown for typing
+        // Global keydown for typing (desktop)
         document.addEventListener('keydown', (e) => {
             if (typingEngine.isTypingActive()) {
                 e.preventDefault();
                 this.handleKeyPress(e.key);
             }
         });
+
+        // Mobile keyboard support via hidden input
+        const mobileInput = document.getElementById('mobile-typing-input');
+        if (mobileInput) {
+            let lastValue = '';
+
+            // Input event handler
+            mobileInput.addEventListener('input', (e) => {
+                if (!typingEngine.isTypingActive()) return;
+
+                const currentValue = e.target.value;
+
+                if (currentValue.length > lastValue.length) {
+                    // Character added
+                    const newChar = currentValue[currentValue.length - 1];
+                    const key = newChar === ' ' ? 'Space' : newChar;
+                    this.handleKeyPress(key);
+                } else if (currentValue.length < lastValue.length) {
+                    // Backspace
+                    this.handleKeyPress('Backspace');
+                }
+
+                lastValue = currentValue;
+                // Clear periodically to prevent long string
+                if (currentValue.length > 50) {
+                    e.target.value = '';
+                    lastValue = '';
+                }
+            });
+
+            // Auto-focus when typing screen appears
+            const typingScreen = document.getElementById('typing-screen');
+            const observer = new MutationObserver(() => {
+                if (typingScreen.classList.contains('active') && typingEngine.isTypingActive()) {
+                    setTimeout(() => {
+                        mobileInput.focus();
+                        mobileInput.click(); // Extra trigger for iOS
+                    }, 300);
+                }
+            });
+            observer.observe(typingScreen, { attributes: true, attributeFilter: ['class'] });
+
+            // Refocus if user taps anywhere on typing screen
+            typingScreen.addEventListener('click', () => {
+                if (typingEngine.isTypingActive()) {
+                    mobileInput.focus();
+                }
+            });
+
+            // Prevent losing focus
+            mobileInput.addEventListener('blur', () => {
+                if (typingEngine.isTypingActive()) {
+                    setTimeout(() => mobileInput.focus(), 100);
+                }
+            });
+        }
 
         // Click anywhere to start typing (user interaction for audio)
         document.addEventListener('click', () => {

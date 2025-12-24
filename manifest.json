@@ -3,7 +3,11 @@
     "short_name": "Typism",
     "description": "Race through the jungle while improving your typing speed! Unlock cute animals and collect bananas in this fun typing adventure game.",
     "start_url": "/Typism/",
-    "display": "standalone",
+    "display": "fullscreen",
+    "display_override": [
+        "fullscreen",
+        "standalone"
+    ],
     "background_color": "#1a1a1a",
     "theme_color": "#2ecc71",
     "orientation": "portrait",
