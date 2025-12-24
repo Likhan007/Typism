@@ -2,32 +2,32 @@
     "name": "Jungle Typing Adventure",
     "short_name": "Typism",
     "description": "Race through the jungle while improving your typing speed! Unlock cute animals and collect bananas in this fun typing adventure game.",
-    "start_url": "./",
+    "start_url": "/Typism/",
     "display": "standalone",
     "background_color": "#1a1a1a",
     "theme_color": "#2ecc71",
     "orientation": "portrait",
     "icons": [
         {
-            "src": "icons/icon-192x192.png",
+            "src": "/Typism/icons/icon-192x192.png",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "any"
         },
         {
-            "src": "icons/icon-192x192.png",
+            "src": "/Typism/icons/icon-192x192.png",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "maskable"
         },
         {
-            "src": "icons/icon-512x512.png",
+            "src": "/Typism/icons/icon-512x512.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any"
         },
         {
-            "src": "icons/icon-512x512.png",
+            "src": "/Typism/icons/icon-512x512.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "maskable"
@@ -43,10 +43,10 @@
             "name": "Play Game",
             "short_name": "Play",
             "description": "Start a new typing race",
-            "url": "./",
+            "url": "/Typism/",
             "icons": [
                 {
-                    "src": "icons/icon-192x192.png",
+                    "src": "/Typism/icons/icon-192x192.png",
                     "sizes": "192x192",
                     "type": "image/png"
                 }
