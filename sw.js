@@ -1,17 +1,24 @@
 // Service Worker for Jungle Typing Adventure
 const CACHE_NAME = 'jungle-typing-v1';
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/css/main.css',
-    '/js/app.js',
-    '/js/modules/storage.js',
-    '/js/modules/ui.js',
-    '/js/modules/game.js',
-    '/js/modules/ghost.js',
-    '/js/modules/animals.js',
-    '/icons/icon-192x192.png',
-    '/icons/icon-512x512.png'
+    './',
+    './index.html',
+    './css/main.css',
+    './css/jungle-theme.css',
+    './css/animations.css',
+    './js/app.js',
+    './js/modules/storage.js',
+    './js/modules/ui.js',
+    './js/modules/game.js',
+    './js/modules/ghost.js',
+    './js/modules/animals.js',
+    './js/modules/typing-engine.js',
+    './js/modules/stats.js',
+    './js/modules/sound.js',
+    './js/data/text-content.js',
+    './icons/icon-192x192.png',
+    './icons/icon-512x512.png',
+    './manifest.json'
 ];
 
 // Install event - cache files
