@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐾 Jungle Typing Adventure</title>
+    <meta name="description"
+        content="A fun jungle-themed typing game for kids to improve typing speed and accuracy while unlocking adorable animals!">
+
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2ecc71">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Jungle Typing">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/jungle-theme.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body>
+    <!-- Home Screen -->
+    <div id="home-screen" class="screen active">
+        <div class="jungle-background"></div>
+
+        <div class="container">
+            <header class="game-header">
+                <h1 class="game-title">🐾 Jungle Typing Adventure</h1>
+                <p class="game-subtitle">Type fast, unlock animals!</p>
+            </header>
+
+            <div class="stats-card">
+                <div class="stat-item">
+                    <span class="stat-label">Best WPM</span>
+                    <span class="stat-value" id="best-wpm">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Animals Unlocked</span>
+                    <span class="stat-value" id="animals-unlocked">0/8</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">🍌 Bananas</span>
+                    <span class="stat-value" id="banana-count">0</span>
+                </div>
+            </div>
+
+            <div class="menu-buttons">
+                <button class="btn btn-primary btn-large" id="start-game-btn">
+                    <span class="btn-icon">🎮</span>
+                    Start Adventure
+                </button>
+                <button class="btn btn-secondary" id="view-animals-btn">
+                    <span class="btn-icon">🐾</span>
+                    My Animals
+                </button>
+                <button class="btn btn-secondary" id="daily-challenge-btn">
+                    <span class="btn-icon">📅</span>
+                    Daily Challenge
+                </button>
+                <button class="btn btn-secondary" id="settings-btn">
+                    <span class="btn-icon">⚙️</span>
+                    Settings
+                </button>
+            </div>
+
+            <div class="typing-tree" id="typing-tree">
+                <div class="tree-trunk"></div>
+                <div class="tree-leaves" id="tree-leaves"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Typing Screen -->
+    <div id="typing-screen" class="screen">
+        <div class="jungle-background"></div>
+
+        <div class="typing-container">
+            <div class="typing-header">
+                <div class="live-stats">
+                    <div class="live-stat">
+                        <span class="live-stat-label">WPM</span>
+                        <span class="live-stat-value" id="live-wpm">0</span>
+                    </div>
+                    <div class="live-stat">
+                        <span class="live-stat-label">Accuracy</span>
+                        <span class="live-stat-value" id="live-accuracy">100%</span>
+                    </div>
+                    <div class="live-stat">
+                        <span class="live-stat-label">Time</span>
+                        <span class="live-stat-value" id="live-timer">0:00</span>
+                    </div>
+                    <div class="live-stat">
+                        <span class="live-stat-label">Streak</span>
+                        <span class="live-stat-value" id="live-streak">0🔥</span>
+                    </div>
+                </div>
+                <button class="btn btn-small" id="quit-typing-btn">Leave</button>
+            </div>
+
+            <div class="text-display-container">
+                <div class="ghost-overlay" id="ghost-overlay"></div>
+                <div class="text-display" id="text-display"></div>
+            </div>
+
+            <div class="combo-effect" id="combo-effect"></div>
+
+            <div class="animal-trail-container">
+                <div class="trail-line"></div>
+                <div class="animal-avatar" id="animal-avatar">
+                    <img src="" alt="Your animal" id="avatar-image">
+                </div>
+                <div class="ghost-avatar" id="ghost-avatar">
+                    <img src="" alt="Ghost" id="ghost-avatar-image">
+                </div>
+            </div>
+
+            <div class="power-ups" id="power-ups-container"></div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
+        <div class="jungle-background"></div>
+
+        <div class="container">
+            <div class="results-card">
+                <h2 class="results-title">🎉 Great Job!</h2>
+
+                <div class="results-stats">
+                    <div class="result-stat">
+                        <span class="result-label">WPM</span>
+                        <span class="result-value" id="result-wpm">0</span>
+                    </div>
+                    <div class="result-stat">
+                        <span class="result-label">Accuracy</span>
+                        <span class="result-value" id="result-accuracy">0%</span>
+                    </div>
+                    <div class="result-stat">
+                        <span class="result-label">Time</span>
+                        <span class="result-value" id="result-time">0:00</span>
+                    </div>
+                    <div class="result-stat">
+                        <span class="result-label">Bananas Earned</span>
+                        <span class="result-value" id="result-bananas">+0 🍌</span>
+                    </div>
+                </div>
+
+                <div class="animal-unlock-container" id="animal-unlock-container"></div>
+
+                <div class="results-buttons">
+                    <button class="btn btn-primary" id="retry-btn">
+                        <span class="btn-icon">🔄</span>
+                        Try Again
+                    </button>
+                    <button class="btn btn-secondary" id="next-btn">
+                        <span class="btn-icon">➡️</span>
+                        Next Level
+                    </button>
+                    <button class="btn btn-secondary" id="home-from-results-btn">
+                        <span class="btn-icon">🏠</span>
+                        Home
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Animal Collection Screen -->
+    <div id="collection-screen" class="screen">
+        <div class="jungle-background"></div>
+
+        <div class="container">
+            <header class="screen-header">
+                <h2 class="screen-title">🐾 My Animal Collection</h2>
+                <button class="btn btn-small" id="back-from-collection-btn">← Back</button>
+            </header>
+
+            <div class="animals-grid" id="animals-grid"></div>
+
+            <div class="mystery-eggs-section">
+                <h3>🥚 Mystery Eggs</h3>
+                <div class="eggs-container" id="eggs-container"></div>
+                <p class="eggs-info">Complete 5 sessions to earn a mystery egg!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Screen -->
+    <div id="settings-screen" class="screen">
+        <div class="jungle-background"></div>
+
+        <div class="container">
+            <header class="screen-header">
+                <h2 class="screen-title">⚙️ Settings</h2>
+                <button class="btn btn-small" id="back-from-settings-btn">← Back</button>
+            </header>
+
+            <div class="settings-card">
+                <div class="setting-item">
+                    <label for="sound-toggle">
+                        <span class="setting-icon">🔊</span>
+                        <span class="setting-label">Sound Effects</span>
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="sound-toggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <label for="music-toggle">
+                        <span class="setting-icon">🎵</span>
+                        <span class="setting-label">Background Music</span>
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="music-toggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <label for="nightmode-toggle">
+                        <span class="setting-icon">🌙</span>
+                        <span class="setting-label">Night Jungle Mode</span>
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="nightmode-toggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <label for="difficulty-select">
+                        <span class="setting-icon">🎯</span>
+                        <span class="setting-label">Difficulty</span>
+                    </label>
+                    <select id="difficulty-select" class="setting-select">
+                        <option value="easy">Easy (Short Words)</option>
+                        <option value="medium" selected>Medium (Mixed)</option>
+                        <option value="hard">Hard (Long Sentences)</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <label for="font-size-select">
+                        <span class="setting-icon">📝</span>
+                        <span class="setting-label">Text Size</span>
+                    </label>
+                    <select id="font-size-select" class="setting-select">
+                        <option value="small">Small</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="large">Large</option>
+                        <option value="xlarge">Extra Large</option>
+                    </select>
+                </div>
+
+                <div class="setting-divider"></div>
+
+                <div class="setting-item">
+                    <label>
+                        <span class="setting-icon">🗑️</span>
+                        <span class="setting-label">Reset All Progress</span>
+                    </label>
+                    <button class="btn btn-danger btn-small" id="reset-progress-btn">
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Modules -->
+    <script type="module" src="js/modules/storage.js"></script>
+    <script type="module" src="js/modules/sound.js"></script>
+    <script type="module" src="js/modules/stats.js"></script>
+    <script type="module" src="js/modules/animals.js"></script>
+    <script type="module" src="js/modules/ghost.js"></script>
+    <script type="module" src="js/modules/typing-engine.js"></script>
+    <script type="module" src="js/modules/ui.js"></script>
+    <script type="module" src="js/data/text-content.js"></script>
+    <script type="module" src="js/app.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('Service Worker registered!', reg))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            });
+        }
+    </script>
+</body>
+
+</html>

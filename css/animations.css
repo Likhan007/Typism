@@ -1,0 +1,473 @@
+/* ===================================
+   CSS Keyframe Animations
+   =================================== */
+
+/* Pulse Animation for Current Character */
+@keyframes pulse {
+
+    0%,
+    100% {
+        background-color: var(--banana-yellow);
+        transform: scale(1);
+    }
+
+    50% {
+        background-color: var(--banana-dark);
+        transform: scale(1.05);
+    }
+}
+
+/* Sparkle/Glow for Correct Streaks */
+@keyframes sparkle-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px rgba(102, 255, 102, 0.5);
+        filter: brightness(1);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(102, 255, 102, 1), 0 0 30px rgba(102, 255, 102, 0.5);
+        filter: brightness(1.3);
+    }
+}
+
+.text-display span.streak-glow {
+    animation: sparkle-glow 0.5s ease-in-out;
+}
+
+/* Wobble/Shake for Mistakes */
+@keyframes wobble-shake {
+
+    0%,
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
+
+    25% {
+        transform: translateX(-5px) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateX(5px) rotate(2deg);
+    }
+
+    75% {
+        transform: translateX(-3px) rotate(-1deg);
+    }
+}
+
+.text-display span.error-wobble {
+    animation: wobble-shake 0.4s ease-in-out;
+}
+
+/* Celebrate Bounce for Animal Unlocks */
+@keyframes celebrate-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    25% {
+        transform: translateY(-30px) scale(1.1);
+    }
+
+    50% {
+        transform: translateY(-15px) scale(1.05) rotate(5deg);
+    }
+
+    75% {
+        transform: translateY(-25px) scale(1.08) rotate(-5deg);
+    }
+}
+
+.animal-unlock {
+    animation: celebrate-bounce 1s ease-out infinite;
+}
+
+/* Slide In from Top */
+@keyframes slide-in-top {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide In from Bottom */
+@keyframes slide-in-bottom {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade In */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Fade Out */
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* Scale In */
+@keyframes scale-in {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Apply entrance animations to screens */
+.screen.active .container {
+    animation: fade-in 0.5s ease-out;
+}
+
+.screen.active .stats-card,
+.screen.active .results-card,
+.screen.active .settings-card {
+    animation: slide-in-bottom 0.6s ease-out;
+}
+
+.screen.active .menu-buttons .btn {
+    animation: slide-in-bottom 0.5s ease-out;
+}
+
+.screen.active .menu-buttons .btn:nth-child(1) {
+    animation-delay: 0.1s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.screen.active .menu-buttons .btn:nth-child(2) {
+    animation-delay: 0.2s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.screen.active .menu-buttons .btn:nth-child(3) {
+    animation-delay: 0.3s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.screen.active .menu-buttons .btn:nth-child(4) {
+    animation-delay: 0.4s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+/* Grow Tree Animation */
+@keyframes grow-tree {
+    from {
+        height: 100px;
+        transform: translateX(-50%) scale(0.8);
+    }
+
+    to {
+        height: 150px;
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+.tree-leaves.growing {
+    animation: grow-tree 1s ease-out forwards;
+}
+
+/* Firefly Float (Night Mode) */
+@keyframes firefly-glow {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        box-shadow: 0 0 5px #ffd93d;
+    }
+
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 15px #ffd93d, 0 0 25px #ffd93d;
+    }
+}
+
+.firefly {
+    animation: firefly-float 6s ease-in-out infinite, firefly-glow 2s ease-in-out infinite;
+}
+
+/* Button Press Effect */
+@keyframes button-press {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.btn:active {
+    animation: button-press 0.2s ease-out;
+}
+
+/* Loading Spinner (for future use) */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--banana-yellow);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Confetti Effect */
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: var(--banana-yellow);
+    top: -10px;
+    animation: confetti-fall 3s linear forwards;
+    z-index: 9999;
+}
+
+.confetti:nth-child(odd) {
+    background: var(--leaf-green);
+}
+
+.confetti:nth-child(3n) {
+    background: var(--sky-blue);
+}
+
+/* Typing Text Cursor Blink */
+@keyframes cursor-blink {
+
+    0%,
+    49% {
+        border-right: 3px solid var(--black);
+    }
+
+    50%,
+    100% {
+        border-right: 3px solid transparent;
+    }
+}
+
+.text-display span.current {
+    animation: pulse 1s infinite, cursor-blink 1s infinite;
+}
+
+/* Success Stamp Animation */
+@keyframes stamp {
+    0% {
+        transform: scale(0) rotate(-45deg);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.2) rotate(5deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.success-stamp {
+    animation: stamp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Ripple Effect on Click */
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    width: 50px;
+    height: 50px;
+    animation: ripple 0.6s ease-out;
+    pointer-events: none;
+}
+
+/* Animal Card Hover */
+.animal-card {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.animal-card:hover {
+    animation: subtle-bounce 0.5s ease-in-out;
+}
+
+@keyframes subtle-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Ghost Fade In/Out */
+@keyframes ghost-fade-in {
+    from {
+        opacity: 0;
+        filter: blur(5px);
+    }
+
+    to {
+        opacity: 0.4;
+        filter: blur(0);
+    }
+}
+
+.ghost-avatar {
+    animation: ghost-fade-in 0.5s ease-out;
+}
+
+/* Progress Bar Fill */
+@keyframes progress-fill {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+.progress-bar {
+    animation: progress-fill 2s ease-out;
+}
+
+/* Banana Collect Animation */
+@keyframes banana-collect {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-30px) scale(1.3);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-60px) scale(0.3);
+        opacity: 0;
+    }
+}
+
+.banana-collected {
+    animation: banana-collect 0.8s ease-out forwards;
+}
+
+/* Star Burst Effect */
+@keyframes star-burst {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+.star-burst {
+    animation: star-burst 1s ease-out forwards;
+}
+
+/* Performance Optimization */
+.jungle-background,
+.animal-avatar,
+.ghost-avatar,
+.text-display span,
+.btn {
+    will-change: transform;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
